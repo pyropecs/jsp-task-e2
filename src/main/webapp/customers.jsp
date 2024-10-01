@@ -1,4 +1,4 @@
-<%@ page import="com.sales.Customer,com.sales.FetchCustomers" %>
+<%@ page import=" com.sales.beanclasses.Customer,com.sales.FetchCustomers" %>
 
 <html>
 <body>

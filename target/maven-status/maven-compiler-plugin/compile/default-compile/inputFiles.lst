@@ -1,8 +1,8 @@
-E:\javaprojects\sales\src\main\java\com\sales\FetchCollection.java
-E:\javaprojects\sales\src\main\java\com\sales\FetchProduct.java
-E:\javaprojects\sales\src\main\java\com\sales\FetchCustomers.java
-E:\javaprojects\sales\src\main\java\com\sales\ConnectToDb.java
-E:\javaprojects\sales\src\main\java\com\sales\Customer.java
-E:\javaprojects\sales\src\main\java\com\sales\ShowCustomersServlet.java
-E:\javaprojects\sales\src\main\java\com\sales\Product.java
-E:\javaprojects\sales\src\main\java\com\sales\ShowProductsServlet.java
+C:\e2\jsp-task-e2\src\main\java\com\sales\servlets\ShowCustomersServlet.java
+C:\e2\jsp-task-e2\src\main\java\com\sales\FetchCollection.java
+C:\e2\jsp-task-e2\src\main\java\com\sales\FetchProduct.java
+C:\e2\jsp-task-e2\src\main\java\com\sales\FetchCustomers.java
+C:\e2\jsp-task-e2\src\main\java\com\sales\common\ConnectToDb.java
+C:\e2\jsp-task-e2\src\main\java\com\sales\beanclasses\Product.java
+C:\e2\jsp-task-e2\src\main\java\com\sales\servlets\ShowProductsServlet.java
+C:\e2\jsp-task-e2\src\main\java\com\sales\beanclasses\Customer.java

@@ -5,51 +5,36 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.sales.common.ConnectToDb;
 
 public class FetchCollection {
 
-        public ResultSet fetchData(String tableName)throws SQLException,Exception  {
-                String query = "select * from " + tableName;
-                ConnectToDb connection = new ConnectToDb();
-                try {
-                        Connection con = connection.connect();
-                        Statement st = con.createStatement();
-                        
-                        ResultSet rs = st.executeQuery(query);
+    private ResultSet rs;
 
-                        st.close();
-                        con.close();
-                        return rs;
-                        
-                } catch (SQLException e) {
-                        System.out.println(e.getMessage());
-                        throw new SQLException();
-                } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                        throw new Exception();
-                }
-        }
+    public ResultSet fetchData(String tableName, Integer... id) {
+   
 
-public ResultSet fetchData(String tableName,int id) throws SQLException, Exception {
-        String query = "select * from " + tableName + " where pid= "+ id ;
+        String query = id.length == 0 ? "select * from " + tableName : "select * from " + tableName + " where pid= " + id[0];
         ConnectToDb connection = new ConnectToDb();
         try {
-                Connection con = connection.connect();
-                Statement st = con.createStatement();
+            Connection con = connection.connect();
+            Statement st = con.createStatement();
 
-                ResultSet rs = st.executeQuery(query);
+            rs = st.executeQuery(query);
 
-                st.close();
-                con.close();
-                return rs;
+            st.close();
+            con.close();
+            return rs;
 
         } catch (SQLException e) {
-                System.out.println(e.getMessage());
-                throw new SQLException();
-        } catch (Exception e) {
-                System.out.println(e.getMessage());
-                throw new Exception();
-        }
-}
+            System.out.println(e.getMessage());
 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+        return rs;
+    }
+
+   
 }
