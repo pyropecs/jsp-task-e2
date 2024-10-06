@@ -3,6 +3,7 @@ com\sales\beanclasses\Customer.class
 com\sales\FetchProduct.class
 com\sales\servlets\ShowProductsServlet.class
 com\sales\servlets\ShowCustomersServlet.class
+com\sales\servlets\ShowMainServlet.class
 com\sales\beanclasses\Product.class
 com\sales\common\ConnectToDb.class
 com\sales\FetchCollection.class

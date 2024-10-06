@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/")
+@WebServlet("/customers")
 public class ShowCustomersServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
@@ -17,7 +17,10 @@ public class ShowCustomersServlet extends HttpServlet {
         
         try {
 
-         
+                String field = req.getParameter("order");
+                String order = req.getParameter("sort");
+                req.setAttribute("field", field);
+                req.setAttribute("order", order);
                 RequestDispatcher rd = req.getRequestDispatcher("customers.jsp");
                 rd.forward(req, res);
          

@@ -1,0 +1,36 @@
+package com.sales;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.sales.common.ConnectToDb;
+
+public class DeleteCollection {
+        private String result;
+
+        public ResultSet deleteDataQuery(int id) {
+                String query = "delete from products where product_id = " + id;
+                try {
+                        ConnectToDb connection = new ConnectToDb();
+                        Connection con = connection.connect();
+                        Statement st = con.createStatement();
+
+                        st.executeUpdate(query);
+                        rs.close();
+                        st.close();
+                        con.close();
+                        result = "successfully deleted";
+                } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+                }
+                return result;
+
+        }
+
+}

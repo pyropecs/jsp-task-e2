@@ -2,9 +2,8 @@
 
 <html>
   <body>
-    <% String requestParameter = request.getParameter("id"); int id =
-    Integer.parseInt(requestParameter); FetchProduct fp = new FetchProduct();
-    Product product = fp.getProduct(id); %>
+    <%  FetchProduct fp = new FetchProduct();
+    Product[] products = fp.getProduct(); %>
     <h1 style="width: 100%; text-align: center">Product</h1>
 
     <table>
@@ -12,20 +11,17 @@
         <tr>
           <th>Product id</th>
           <th>Product name</th>
-          <th>Mrp</th>
-          <th>Rating</th>
-          <th>Supplier name</th>
-          <th>quantity</th>
+          <th>Price</th>
+         
         </tr>
-
+<% for(Product p:products){
         <tr>
           <td><%= product.getPid() %></td>
           <td><%= product.getProductName() %></td>
-          <td><%= product.getMrp() %></td>
-          <td><%= product.getRating() %></td>
-          <td><%= product.getSupplierName() %></td>
-          <td><%= product.getQuantity() %></td>
+          <td><%= product.getPrice() %></td>
+          <td>delete</td>
         </tr>
+<% } %>        
       </tbody>
     </table>
     <a href="/sales"><button>back</button></a>

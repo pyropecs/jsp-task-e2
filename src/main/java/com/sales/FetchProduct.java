@@ -2,25 +2,23 @@ package com.sales;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.sales.beanclasses.Product;
 
 public class FetchProduct {
-
-    public Product getProduct(int id) {
+ private final ArrayList<Product> arr = new ArrayList<>();
+    public Product[] getProduct() {
         FetchCollection fc = new FetchCollection();
-        Product p = new Product();
+  
         try {
-            ResultSet rs = fc.fetchData("products", id);
+            ResultSet rs = fc.fetchData("products");
             while (rs.next()) {
-
-                p.setPid(rs.getInt("pid"));
+                Product p = new Product();
+                p.setPid(rs.getInt("product_id"));
                 p.setProductName(rs.getString("product_name"));
-                p.setMrp(rs.getFloat("mrp"));
-                p.setQuantity(rs.getInt("quantity"));
-                p.setRating(rs.getFloat("rating"));
-                p.setSupplierName(rs.getString("supplier_name"));
-
+                p.setPrice(rs.getFloat("price"));
+                arr.add(p);
             }
             rs.close();
 
@@ -30,7 +28,11 @@ public class FetchProduct {
             System.out.println(e.getMessage());
 
         }
-        return p;
+        return arr.toArray(new Product[0]);
     }
-
+    public String deleteProduct(int id){
+        DeleteCollection dc = new DeleteCollection();
+        String result = dc.deleteDataQuery(id);
+        return result;
+    }
 }

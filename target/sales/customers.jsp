@@ -1,43 +1,55 @@
 <%@ page import=" com.sales.beanclasses.Customer,com.sales.FetchCustomers" %>
 
 <html>
-<body>
-<% 
-FetchCustomers fc = new FetchCustomers();
-Customer[] customers = fc.getCustomers();
-%>
-        <h1 style="width:100%; text-align: center;">Customers</h1>
+  <body>
+        <%! private Customer[] customers; %>
+        <% String field = (String) request.getAttribute("field"); 
+        String order = (String)  request.getAttribute("order");
+        %>
 
-<table>
-        <tbody>
+    <% FetchCustomers fc = new FetchCustomers(); 
 
-        
-<tr>
-        <th>Customer id</th>
-        <th>Customer name</th>
-        <th>Customer Mobile</th>
-        <th>City</th>
-        <th>Product id</th>
-</tr>
+    if(field!=null && order!=null){
+        out.println(field + order);
+         customers = fc.getCustomers(field,order); 
+    }else if(field == null && order == null){
+        out.println(field + order);
+         customers = fc.getCustomers();
+    }else{
+        out.println("something went wrong");
+    }
+    
+    
+    %>
+    
+    <h1 style="width: 100%; text-align: center">Customers</h1>
 
-<%
-for(Customer c:customers){
+    <table>
+      <tbody>
+        <tr>
+          <th>Customer id</th>
+          <th>Customer name</th>
+          <th>Customer age</th>
+        </tr>
 
+        <% for(Customer c:customers){ %>
 
-%>
+        <tr>
+          <td><%= c.getCid() %></td>
+          <td><%= c.getCustomerName() %></td>
+          <td><%= c.getAge() %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <form action="customers" method="get">
+      <select name="order" id="">
+        <option selected value="customer_name">name</option>
+        <option value="customer_age">age</option>
+      </select>
 
- <tr>
-            <td><%= c.getCid() %></td>
-            <td><%= c.getCustomerName()  %></td>
-            <td><%= c.getCustomerMobile() %></td>
-            <td><%= c.getCity() %></td>
-            <td><a href='/sales/products?id=<%=c.getPid() %>' > <%= c.getPid() %> </a></td>
-</tr>
-<%
-}
-%>
-</tbody>
-</table>
-
-</body>
+      <input type="submit" name="sort" value="asc"/>
+      <input type="submit" name="sort" value="desc" />
+    </form>
+  </body>
 </html>

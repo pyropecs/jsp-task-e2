@@ -11,12 +11,31 @@ public class FetchCollection {
 
     private ResultSet rs;
 
-    public ResultSet fetchData(String tableName, Integer... id) {
-   
+    public ResultSet fetchData(String tableName, String... args) {
+     
+        String order = args.length != 0 ? args[0] : "none";
+        String field = args.length != 0 ? args[1] : "none";
+       
+        switch (order) {
+            case "asc":
+                rs = fetchDataQuery("select * from " + tableName + " order by "+ field + " asc");
+                System.out.println(order + field);
+                break;
+            case "desc":
+                rs = fetchDataQuery("select * from " + tableName + " order by " + field + " desc");
+              
 
-        String query = id.length == 0 ? "select * from " + tableName : "select * from " + tableName + " where pid= " + id[0];
-        ConnectToDb connection = new ConnectToDb();
+            default:
+         
+                rs = fetchDataQuery("select * from " + tableName);
+                break;
+        }
+        return rs;
+    }
+
+    public ResultSet fetchDataQuery(String query) {
         try {
+            ConnectToDb connection = new ConnectToDb();
             Connection con = connection.connect();
             Statement st = con.createStatement();
 
@@ -24,7 +43,6 @@ public class FetchCollection {
 
             st.close();
             con.close();
-            return rs;
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -36,5 +54,4 @@ public class FetchCollection {
         return rs;
     }
 
-   
 }
