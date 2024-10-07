@@ -23,7 +23,7 @@ public class FetchCollection {
                 orderBy = " order by " + field + " " + order;
                 break;
             default:
-                // No additional action needed for the default case
+               System.out.println("no order is mentioned");
                 break;
         }
         rs = fetchDataQuery("select * from " + tableName + orderBy);
