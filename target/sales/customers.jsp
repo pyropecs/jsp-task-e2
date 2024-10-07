@@ -10,7 +10,7 @@
     <% FetchCustomers fc = new FetchCustomers(); 
 
     if(field!=null && order!=null){
-        out.println(field + order);
+       
          customers = fc.getCustomers(field,order); 
     }else if(field == null && order == null){
         out.println(field + order);

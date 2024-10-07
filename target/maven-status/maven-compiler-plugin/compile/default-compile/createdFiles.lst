@@ -1,6 +1,8 @@
 com\sales\FetchCustomers.class
 com\sales\beanclasses\Customer.class
+com\sales\DeleteCollection.class
 com\sales\FetchProduct.class
+com\sales\servlets\DeleteProductServlet.class
 com\sales\servlets\ShowProductsServlet.class
 com\sales\servlets\ShowCustomersServlet.class
 com\sales\servlets\ShowMainServlet.class

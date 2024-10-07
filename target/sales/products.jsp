@@ -1,10 +1,9 @@
-<%@ page import=" com.sales.beanclasses.Product,com.sales.FetchProduct" %>
+<%@ page import="com.sales.beanclasses.Product,com.sales.FetchProduct" %>
 
 <html>
   <body>
-    <% String requestParameter = request.getParameter("id"); int id =
-    Integer.parseInt(requestParameter); FetchProduct fp = new FetchProduct();
-    Product product = fp.getProduct(id); %>
+    <%  FetchProduct fp = new FetchProduct();
+    Product[] products = fp.getProduct(); %>
     <h1 style="width: 100%; text-align: center">Product</h1>
 
     <table>
@@ -12,20 +11,31 @@
         <tr>
           <th>Product id</th>
           <th>Product name</th>
-          <th>Mrp</th>
-          <th>Rating</th>
-          <th>Supplier name</th>
-          <th>quantity</th>
+          <th>Price</th>
+          <th>Delete</th>
         </tr>
 
+ <%
+ if(products.length == 0){
+  %>  
+ <tr>
+  <td>no products found</td>
+ </tr>
+
+ <% } %>
+
+
+<% for(Product p:products){ %>
         <tr>
-          <td><%= product.getPid() %></td>
-          <td><%= product.getProductName() %></td>
-          <td><%= product.getMrp() %></td>
-          <td><%= product.getRating() %></td>
-          <td><%= product.getSupplierName() %></td>
-          <td><%= product.getQuantity() %></td>
+          <td><%= p.getPid() %></td>
+          <td><%= p.getProductName() %></td>
+          <td><%= p.getPrice() %></td>
+          <td><a href="products/deleteItem?id=<%= p.getPid() %>" onclick="return confirm('Are you sure you want to delete this item?')">
+    <img src="images/delete.png" alt="Delete" height="32" width="32">
+</a>
+</td>
         </tr>
+<% } %>        
       </tbody>
     </table>
     <a href="/sales"><button>back</button></a>
