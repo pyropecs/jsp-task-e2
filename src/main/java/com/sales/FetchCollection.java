@@ -15,21 +15,19 @@ public class FetchCollection {
      
         String order = args.length != 0 ? args[0] : "none";
         String field = args.length != 0 ? args[1] : "none";
-       
+
+        String orderBy = ""; 
         switch (order) {
             case "asc":
-                rs = fetchDataQuery("select * from " + tableName + " order by "+ field + " asc");
-                System.out.println(order + field);
-                break;
             case "desc":
-                rs = fetchDataQuery("select * from " + tableName + " order by " + field + " desc");
-              
-
+                orderBy = " order by " + field + " " + order;
+                break;
             default:
-         
-                rs = fetchDataQuery("select * from " + tableName);
+                // No additional action needed for the default case
                 break;
         }
+        rs = fetchDataQuery("select * from " + tableName + orderBy);
+
         return rs;
     }
 

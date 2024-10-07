@@ -35,6 +35,7 @@ public class FetchCustomers {
 
     public Customer[] getCustomers(String field,String order){
         FetchCollection fc = new FetchCollection();
+        System.out.println("field"+field+"order"+order);
         try {
             ResultSet rs = fc.fetchData("customers",order,field);
             while (rs.next()) {

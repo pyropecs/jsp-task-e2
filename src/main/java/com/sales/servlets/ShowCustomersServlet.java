@@ -13,7 +13,8 @@ public class ShowCustomersServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
 
-        String path = req.getServletPath();
+        
+        
         
         try {
 
