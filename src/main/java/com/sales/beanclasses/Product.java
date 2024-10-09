@@ -2,35 +2,42 @@ package com.sales.beanclasses;
 
 public class Product {
 
-    private int pid;
-    private String productName;
+    private int id;
+    private String name;
     private float price;
-   
 
-    public int getPid() {
-        return this.pid;
+    public Product() {
     }
 
-    public String getProductName() {
-        return this.productName;
+    public Product(int id, String name, float price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public float getPrice() {
         return this.price;
     }
 
-
-    public void setPid(int pid) {
-        this.pid = pid;
+    public void setid(int id) {
+        this.id = id;
     }
 
     public void setPrice(float price) {
         this.price = price;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
-
 
 }

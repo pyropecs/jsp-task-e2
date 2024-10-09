@@ -37,8 +37,8 @@
         <% for(Customer c:customers){ %>
 
         <tr>
-          <td><%= c.getCid() %></td>
-          <td><%= c.getCustomerName() %></td>
+          <td><%= c.getid() %></td>
+          <td><%= c.getName() %></td>
           <td><%= c.getAge() %></td>
         </tr>
         <% } %>

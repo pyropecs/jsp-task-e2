@@ -12,18 +12,18 @@ public class FetchCollection {
     private ResultSet rs;
 
     public ResultSet fetchData(String tableName, String... args) {
-     
-        String order = args.length != 0 ? args[0] : "none";
-        String field = args.length != 0 ? args[1] : "none";
 
-        String orderBy = ""; 
+        String order = (args.length != 0) ? args[0] : "none";
+        String field = (args.length != 0) ? args[1] : "none";
+
+        String orderBy = "";
         switch (order) {
             case "asc":
             case "desc":
                 orderBy = " order by " + field + " " + order;
                 break;
             default:
-               System.out.println("no order is mentioned");
+                System.out.println("no order is mentioned");
                 break;
         }
         rs = fetchDataQuery("select * from " + tableName + orderBy);
@@ -32,8 +32,9 @@ public class FetchCollection {
     }
 
     public ResultSet fetchDataQuery(String query) {
+        ConnectToDb connection = new ConnectToDb();
+
         try {
-            ConnectToDb connection = new ConnectToDb();
             Connection con = connection.connect();
             Statement st = con.createStatement();
 

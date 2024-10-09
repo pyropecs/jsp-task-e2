@@ -9,15 +9,13 @@ import com.sales.common.ConnectToDb;
 public class DeleteCollection {
         private String result;
 
-        public String deleteDataQuery(int id) {
-                String query = "delete from products where product_id = " + id;
+        public String deleteDataQuery(int id,String tableName) {
+                String query = "delete from "+ tableName +" where product_id = " + id;
                 try {
                         ConnectToDb connection = new ConnectToDb();
                         Connection con = connection.connect();
                         Statement st = con.createStatement();
-
                         st.executeUpdate(query);
-                
                         st.close();
                         con.close();
                         result = "successfully deleted";
