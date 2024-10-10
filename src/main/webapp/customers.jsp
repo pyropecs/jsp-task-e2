@@ -1,25 +1,21 @@
-<%@ page import=" com.sales.beanclasses.Customer,com.sales.FetchCustomers" %>
+<%@ page import=" com.sales.beanclasses.Customer,com.sales.FetchData,java.util.List" %>
 
 <html>
   <body>
-        <%! private Customer[] customers; %>
+        <%! private List<Customer> customers; %>
         <% String field = (String) request.getAttribute("field"); 
         String order = (String)  request.getAttribute("order");
       
         %>
 
-    <% FetchCustomers fc = new FetchCustomers(); 
-
-    if(field!=null && order!=null){
-       
-         customers = fc.getCustomers(field,order); 
-    }else if(field == null && order == null){
+    <% FetchData<Customer> fetchDataInstance = new FetchData<>(); 
+      try{
+        customers = fetchDataInstance.fetchCollection("customers", field, order);
       
-         customers = fc.getCustomers();
-    }else{
-        out.println("something went wrong");
-    }
-    
+      }catch(Exception e){
+        System.out.println(e.getMessage() + e.getStackTrace());
+      }
+ 
     
     %>
     
@@ -37,7 +33,7 @@
         <% for(Customer c:customers){ %>
 
         <tr>
-          <td><%= c.getid() %></td>
+          <td><%= c.getId() %></td>
           <td><%= c.getName() %></td>
           <td><%= c.getAge() %></td>
         </tr>

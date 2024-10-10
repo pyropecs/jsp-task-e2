@@ -1,9 +1,9 @@
-<%@ page import="com.sales.beanclasses.Product,com.sales.FetchProduct" %>
+<%@ page import="com.sales.beanclasses.Product,com.sales.FetchData,java.util.List" %>
 
 <html>
   <body>
-    <%  FetchProduct fp = new FetchProduct();
-    Product[] products = fp.getProduct(); %>
+    <%  FetchData<Product> fetchDataInstance = new FetchData<>();
+    List<Product> products = fetchDataInstance.fetchCollection("products"); %>
     <h1 style="width: 100%; text-align: center">Product</h1>
 
     <table>
@@ -16,7 +16,7 @@
         </tr>
 
  <%
- if(products.length == 0){
+ if(products.size() == 0){
   %>  
  <tr>
   <td>no products found</td>
@@ -27,10 +27,10 @@
 
 <% for(Product p:products){ %>
         <tr>
-          <td><%= p.getPid() %></td>
-          <td><%= p.getProductName() %></td>
+          <td><%= p.getId() %></td>
+          <td><%= p.getName() %></td>
           <td><%= p.getPrice() %></td>
-          <td><a href="products/deleteItem?id=<%= p.getPid() %>" onclick="return confirm('Are you sure you want to delete this item?')">
+          <td><a href="products/deleteItem?id=<%= p.getId() %>" onclick="return confirm('Are you sure you want to delete this item?')">
     <img src="images/delete.png" alt="Delete" height="32" width="32">
 </a>
 </td>

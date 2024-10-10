@@ -30,7 +30,9 @@ public class ShowCustomersServlet extends HttpServlet {
             IOException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {
+            System.out.println("Something went wrong CustomerServvlet");
             System.out.println(e.getMessage());
+            
         }
 
     }

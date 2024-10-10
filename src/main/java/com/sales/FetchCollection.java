@@ -13,8 +13,8 @@ public class FetchCollection {
 
     public ResultSet fetchData(String tableName, String... args) {
 
-        String order = (args.length != 0) ? args[0] : "none";
-        String field = (args.length != 0) ? args[1] : "none";
+        String order = (args.length != 0) && args[1] !=null ? args[1] : "none";
+        String field = (args.length != 0) && args[0] !=null? args[0] : "none";
 
         String orderBy = "";
         switch (order) {
@@ -26,6 +26,7 @@ public class FetchCollection {
                 System.out.println("no order is mentioned");
                 break;
         }
+        System.out.println("current table name: "+tableName);
         rs = fetchDataQuery("select * from " + tableName + orderBy);
 
         return rs;
@@ -47,6 +48,7 @@ public class FetchCollection {
             System.out.println(e.getMessage());
 
         } catch (Exception e) {
+            System.out.println("something went wrong in FetchDataMethod");
             System.out.println(e.getMessage());
 
         }
